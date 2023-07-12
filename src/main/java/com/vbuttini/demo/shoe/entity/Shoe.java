@@ -14,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 /**
@@ -47,6 +48,9 @@ public class Shoe {
 
     @Column(name = "brand", nullable = false)
     private String brand;
+
+    @Column(name = "price", nullable = false)
+    private BigDecimal price;
 
     @Column(name = "dateCreated", nullable = false)
     private LocalDateTime dateCreated;

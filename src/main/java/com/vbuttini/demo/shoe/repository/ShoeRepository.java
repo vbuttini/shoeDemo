@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 /**
@@ -25,6 +26,7 @@ public interface ShoeRepository extends JpaRepository<Shoe, Long> {
             "AND ( (:category IS NULL) OR (shoe.category = :category) ) " +
             "AND ( (:color IS NULL) OR (shoe.color = :color) ) " +
             "AND ( (:brand IS NULL) OR (shoe.brand = :brand) ) " +
+            "AND ( (:price IS NULL) OR (shoe.price = :price) ) " +
             "AND ( (:dateCreated IS NULL) OR (shoe.dateCreated = :dateCreated) ) " +
             "AND ( (:description IS NULL) OR (UCASE(shoe.description) LIKE UCASE(:description)) )"
     )
@@ -33,6 +35,7 @@ public interface ShoeRepository extends JpaRepository<Shoe, Long> {
                         String category,
                         String color,
                         String brand,
+                        BigDecimal price,
                         LocalDateTime dateCreated,
                         String description,
                         Pageable pageable

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lista de Calçados</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Lista de Calçados</h1>
+
+    <div class="filters">
+      <!-- Filtros de pesquisa -->
+      <label for="size">Tamanho:</label>
+      <select id="size">
+        <!-- Opções para tamanho -->
+        <option value="">Todos</option>
+        <option value="35">35</option>
+        <option value="36">36</option>
+        <option value="37">37</option>
+        <option value="38">38</option>
+        <option value="39">39</option>
+        <option value="40">40</option>
+        <option value="41">41</option>
+        <option value="42">42</option>
+        <option value="43">43</option>
+        <option value="44">44</option>
+      </select>
+
+      <!-- //TODO: ADICIONAR FILTROS -->
+      <!-- Categoria, cor, preço, marca, data de cadastro, descrição -->
+      <!-- Incluir aqui os elementos de filtro de acordo com as especificações -->
+    </div>
+
+    <button class="btn btn-primary" id="addProductButton">
+      Adicionar Produto
+    </button>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Descrição</th>
+          <th>Categoria</th>
+          <th>Marca</th>
+          <th>Tamanho</th>
+          <th>Preço</th>
+          <th>Data de Cadastro</th>
+          <th>Quantidade em Estoque</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        #foreach($product in $products)
+          <tr>
+            <td>$product.id</td>
+            <td>$product.description</td>
+            <td>$product.category</td>
+            <td>$product.brand</td>
+            <td>$product.size</td>
+            <td>$product.price</td>
+            <td>$product.dateCreated</td>
+            <td>$product.stockQuantity</td>
+            <td>
+              <button type="button" class="btn btn-primary" onclick="editProduct($product.id)">
+                Edit
+              </button>
+              <button class="btn btn-danger" onclick="deleteProduct($product.id)">
+                X
+              </button>
+            </td>
+          </tr>
+        #end
+      </tbody>
+    </table>
+  </div>
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

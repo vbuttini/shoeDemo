@@ -1,5 +1,7 @@
 package com.vbuttini.demo.shoe.config;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.apache.velocity.Template;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.context.Context;
@@ -13,6 +15,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Locale;
 import java.util.Map;
 
+/**
+ * Custom implementation of ViewResolver for Spring and Velocity
+ *
+ * @author Vinicius Buttini
+ */
+@Getter
+@Setter
 public class SpringVelocityViewResolver implements ViewResolver {
 
     private final VelocityEngine velocityEngine;
@@ -35,35 +44,8 @@ public class SpringVelocityViewResolver implements ViewResolver {
         velocityView.setVelocityEngine(this.velocityEngine);
         return new SpringVelocityView(velocityView, viewName, locale, cache, prefix, suffix, contentType);
     }
-
-    public void setPrefix(final String prefix) {
-        this.prefix = prefix;
-    }
-
-    public String getPrefix() {
-        return prefix;
-    }
-
-    public void setSuffix(final String suffix) {
-        this.suffix = suffix;
-    }
-
-    public String getSuffix() {
-        return suffix;
-    }
-
-    public void setContentType(final String contentType) {
-        this.contentType = contentType;
-    }
-
-    public String getContentType() {
-        return contentType;
-    }
-
-    public void setCache(boolean cache) {
-        this.cache = cache;
-    }
-
+    @Getter
+    @Setter
     class SpringVelocityView implements View {
 
         private final VelocityView velocityView;
@@ -88,11 +70,6 @@ public class SpringVelocityViewResolver implements ViewResolver {
         }
 
         @Override
-        public String getContentType() {
-            return contentType;
-        }
-
-        @Override
         public void render(final Map<String, ?> model, final HttpServletRequest request, final HttpServletResponse response) throws Exception {
             final Context context = this.velocityView.createContext(request, response);
             context.put("locale", locale);
@@ -106,14 +83,6 @@ public class SpringVelocityViewResolver implements ViewResolver {
 
             // merge the template and context into the response
             this.velocityView.merge(template, context, response.getWriter());
-        }
-
-        public String getPrefix() {
-            return prefix;
-        }
-
-        public String getSuffix() {
-            return suffix;
         }
 
         public boolean isCache() {

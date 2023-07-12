@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.math.BigDecimal;
 import java.net.URI;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -90,11 +91,18 @@ public class ShoeController {
             @RequestParam(required = false) String category,
             @RequestParam(required = false) String color,
             @RequestParam(required = false) String brand,
+            @RequestParam(required = false) BigDecimal price,
             @RequestParam(required = false) LocalDateTime dateCreated,
             @RequestParam(required = false) String description,
             @RequestParam(required = false) Pageable pageable
     ){
-        return ResponseEntity.ok(service.filterByAttributes(size, category, color, brand, dateCreated, description, pageable));
+        return ResponseEntity.ok(service.filterByAttributes(size, category, color, brand, price, dateCreated, description, pageable));
+    }
+
+    @GetMapping("/getAll")
+    public ResponseEntity<List<Shoe>> getAll(
+    ){
+        return ResponseEntity.ok(service.getAll());
     }
 
     /**

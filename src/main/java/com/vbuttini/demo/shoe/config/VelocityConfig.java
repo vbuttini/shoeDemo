@@ -11,6 +11,14 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.servlet.ServletConfig;
 
+/**
+ * This class is the Velocity configuration.
+ * Velocity is a WebMCV tool.
+ *
+ * This class implements WebMvcConfigurer interface.
+ *
+ * @author Vinicius Buttini
+ */
 @Configuration
 public class VelocityConfig implements WebMvcConfigurer {
 

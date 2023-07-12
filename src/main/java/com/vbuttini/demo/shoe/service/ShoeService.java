@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -83,11 +84,12 @@ public class ShoeService {
                                          String category,
                                          String color,
                                          String brand,
+                                         BigDecimal price,
                                          LocalDateTime dateCreated,
                                          String description,
                                          Pageable pageable
     ){
-        return repository.filterByAttributes(size, category, color, brand, dateCreated, description, pageable);
+        return repository.filterByAttributes(size, category, color, brand, price, dateCreated, description, pageable);
     }
 
     /**
@@ -103,5 +105,9 @@ public class ShoeService {
             shoeList.add(factory.generateRandomShoe());
         }
         return repository.saveAll(shoeList);
+    }
+
+    public List<Shoe> getAll() {
+        return repository.findAll();
     }
 }

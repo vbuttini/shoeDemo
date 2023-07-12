@@ -3,6 +3,7 @@ package com.vbuttini.demo.shoe.factory;
 import com.vbuttini.demo.shoe.entity.Shoe;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Random;
@@ -79,6 +80,7 @@ public class ShoeFactory {
                         1 + random.nextInt(1000)
         );
 
+        shoe.setPrice(BigDecimal.valueOf(100 + random.nextInt(1500)));
         shoe.setStockQuantity(Long.valueOf(1 + random.nextInt(100000)));
         shoe.setDateCreated(LocalDateTime.now(ZoneId.of("America/Sao_Paulo")));
 
